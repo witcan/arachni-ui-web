@@ -83,16 +83,17 @@
     <%# end %>
     <!-- Modal -->
     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
+    <div class="modal-header" style="border-bottom: 0px solid #eee;text-align: center;">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Modal header</h3>
+        <h3 id="myModalLabel" style="color:#c02d2d;font-size: 40px;margin-top: 21px;">Caution !</h3>
     </div>
-    <div class="modal-body">
-        <p>One fine body…</p>
+    <div class="modal-body" style="text-align: center;">
+        <p style="font-size: 22px;">The scanning task you are willing to perform is already in the system.</p>
+        <p style="padding: 0px 17px;font-size: 15px;">Running the same tasks multiple time can affect the time durationsfor other scanning processes</p>
     </div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <button class="btn btn-primary">Continue scans</button>
+    <div class="modal-footer" style="background-color: #ffffff;border-top: 0px solid #ddd;text-align: center;">
+        <button class="btn btn-primary" style="padding: 23px 40px;background:#3fa5ce;color: #ffffff;margin-right: 60px;">Continue anyway</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true" style="padding: 14px 40px;background:#3fa5ce;color: #ffffff;text-shadow: unset;">Abort<div>(Recommended)</div></button>
     </div>
     </div>
     <% if @scan.id %>
