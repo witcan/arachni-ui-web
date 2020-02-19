@@ -34,6 +34,15 @@ class ScansController < ApplicationController
 
     load_and_authorize_resource
 
+    def check_times
+        url = params[:url]
+        if Scan.where(owner_id: current_user.id, url: url).count < 3
+            render json: {status: 'pass'}
+        else
+            render json: {status: 'unpass'}
+        end
+    end
+
     # GET /scans
     # GET /scans.json
     def index

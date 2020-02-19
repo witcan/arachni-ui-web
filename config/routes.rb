@@ -40,6 +40,7 @@ ArachniWebui::Application.routes.draw do
         patch :abort,    on: :member
 
         post  :import,   on: :collection
+        post  :check_times,   on: :collection
 
         patch :suspend,  on: :collection, to: :suspend_all
         patch :pause,    on: :collection, to: :pause_all

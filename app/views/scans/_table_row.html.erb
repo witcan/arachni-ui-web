@@ -149,7 +149,7 @@
             <%= (cs = scan.comments.size) > 1 ? cs : 'None yet' %>
         <% end %>
     </td>
-    <td class="hidden-phone"><%= Scan.where(url: scan.url).count %> </td>
+    <td class="hidden-phone"><%= Scan.where(owner_id: current_user.id, url: scan.url).count %> </td>
 
     <td>
         <%= render partial: 'table_buttons',

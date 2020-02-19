@@ -75,10 +75,26 @@
         <%= render partial: 'form_advanced_options', locals: { f: f } %>
     <% end %>
 
-    <%= f.button :submit, id: 'go-btn',
+    <%#= f.button :submit, id: 'go-btn',
                  class: 'btn btn-primary',
                  value: @scan.id ? 'Save' : 'Go!' %>
-
+    <%# else %>
+    <a href="#myModal" role="button" class="btn btn-primary ask-id"><%= @scan.id ? 'Save' : 'Go!' %></a>
+    <%# end %>
+    <!-- Modal -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Modal header</h3>
+    </div>
+    <div class="modal-body">
+        <p>One fine body…</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary">Continue scans</button>
+    </div>
+    </div>
     <% if @scan.id %>
         <%= link_to scan_path( @scan ), title: 'Back to scan',
                     class: 'btn' do %>
@@ -88,3 +104,27 @@
 
 
 <% end %>
+
+<script>
+    $('.ask-id').click(function(){
+        url = $("#scan_url").val()
+        $.ajax({
+            type: "post",
+            url: '/scans/check_times',
+            data: {
+              url: url
+            },
+            success: function(result) {
+                // alert(result.status);
+                if(result.status == "pass"){
+                    $('#new_scan').submit();
+                }else if(result.status == "unpass"){
+                    $('#myModal').modal();
+                }else{
+                    alert("fail!");
+                }
+            }
+        });
+
+    })
+</script>
